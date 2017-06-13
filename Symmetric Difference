@@ -1,0 +1,23 @@
+function sym(args) {
+  var arr = Array.prototype.slice.call(arguments);      //args into array
+  
+  function symDiff(one, two){
+    var fin = [];
+    
+    one.forEach(function(num) {
+     if (two.indexOf(num) < 0 && fin.indexOf(num) < 0){
+       fin.push(num);
+    }
+    });
+    
+    two.forEach(function(num){
+      if (one.indexOf(num) < 0 && fin.indexOf(num) < 0){
+        fin.push(num);
+      }
+});
+    return fin;
+  }
+  return arr.reduce(symDiff);
+}
+
+sym([1, 2, 3], [5, 2, 1, 4]);
