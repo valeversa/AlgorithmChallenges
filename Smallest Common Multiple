@@ -1,0 +1,28 @@
+function smallestCommons(arr) {
+  arr.sort(function(a, b) { //sorting start numbers
+    return b - a;
+  });
+ //   console.log(arr);
+  var numb = [];
+  for (var i = arr[0]; i >= arr[1]; i--) { //create array of all nums
+    numb.push(i);
+  }
+  //   console.log(numb);
+  var quot = 0; //variables for the quotient that can access them outside the loop
+  var loop = 1;
+  var n;
+  // Run code while n is not the same as the array length.
+  do {
+    quot = numb[0] * loop * numb[1];
+    for (n = 2; n < numb.length; n++) {
+      if (quot % numb[n] !== 0) {
+        break;
+      }
+    }
+    loop++;
+  } while (n !== numb.length);
+
+ return quot;
+}
+
+smallestCommons([1,5]);
