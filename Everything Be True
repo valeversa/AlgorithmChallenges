@@ -1,0 +1,18 @@
+function truthCheck(collection, pre) {
+  var tru = [];
+  for (var i in collection) { 
+if (collection[i][pre]) {
+        tru.push(1);
+      } else {
+        tru.push(2);
+      }
+     }
+ //   console.log(tru);
+     if (tru.indexOf(2) == -1){
+       return true;
+     } else {
+       return false;
+     }
+}
+
+truthCheck([{"user": "Tinky-Winky", "sex": "male"}, {"user": "Dipsy", "sex": "male"}, {"user": "Laa-Laa", "sex": "female"}, {"user": "Po", "sex": "female"}], "sex");
