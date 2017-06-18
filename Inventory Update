@@ -1,0 +1,43 @@
+Compare and update the inventory stored in a 2D array against a second 2D array of a fresh delivery. 
+Update the current existing inventory item quantities (in arr1). If an item cannot be found, 
+add the new item and quantity into the inventory array. The returned inventory array should be in alphabetical order 
+by item.
+
+function updateInventory(arr1, arr2) {
+  if (arr1.length === 0) {                       //if the first array is empty, return the second array in alphabetical order by item
+    arr2.sort((a, b) => a[1] > b[1]);
+    return arr2;
+  } else if (arr2.length === 0) {                //if the second array is empty, return the second array in alphabetical order by item
+    arr1.sort((a, b) => a[1] > b[1]);
+    return arr1;
+  } else if (arr1.length !== 0 && arr2.length !== 0) {  //if both arrays have items
+    var newarr1 = [];                                   //exchange nested array first and second element
+    var newarr2 = [];
+    var property = [];                                  //create array with list of items in first array
+    for (var i = 0; i < arr1.length; i++) {
+      property.push(arr1[i][1]);
+      newarr1.push([arr1[i][1], arr1[i][0]]);
+      newarr2.push([arr2[i][1], arr2[i][0]]);
+    }
+    for (var x = 0; x < newarr2.length; x++) {            //update the quantities in first array (sum items from second array)
+      for (var k = 0; k < newarr2.length; k++) {
+        if (newarr1[x][0].indexOf(newarr2[k][0]) !== -1) {
+          newarr1[x][1] = newarr1[x][1] + newarr2[k][1];
+        }
+      }
+    }
+    var diff = [];                                      //create array of items in second array but not in first array (diff)
+    for (var y = 0; y < newarr2.length; y++) {
+      if (!property.includes(newarr2[y][0])) {
+        diff.push([newarr2[y][0], newarr2[y][1]]);
+      }
+    }
+    newarr1 = newarr1.concat(diff);                     //concatenate (diff) with first array 
+    newarr1.sort((a, b) => a[0] > b[0]);                //sort arr1 items in alphabetical order by item
+    var fin = [];
+    for (var r = 0; r < newarr1.length; r++) {          //exchange nested array first and second element
+      fin.push([newarr1[r][1], newarr1[r][0]]);
+    }
+    return fin;
+  }
+}
