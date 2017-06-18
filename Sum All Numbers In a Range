@@ -1,3 +1,7 @@
+We'll pass you an array of two numbers. Return the sum of those two numbers and all numbers between them.
+The lowest number will not always come first.
+https://www.freecodecamp.com/challenges/sum-all-numbers-in-a-range
+
 function sumAll(arr) {
   var newArr = arr.sort(function sort(a,b){
     return a - b;
