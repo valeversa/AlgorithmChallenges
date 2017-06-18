@@ -1,3 +1,6 @@
+Return true if the passed string is a valid US phone number (rules: https://www.freecodecamp.com/challenges/validate-us-telephone-numbers)
+
+
 function telephoneCheck(str) {
   var len = str.length;
  
